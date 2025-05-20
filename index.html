@@ -44,6 +44,35 @@
 <h3>Download Blender Design File</h3>
 <p>This Blender file contains the design of the eyeball back for the animatronic mechanism:</p>
 <a href="EyeBall Back (3).blend" download>🔷 Download EyeBall Back (3).blend</a>
+<h3>3D Preview of Lion Head</h3>
+<div id="viewer" style="width: 600px; height: 400px;"></div>
+
+<!-- Three.js and STLLoader -->
+<script src="https://cdn.jsdelivr.net/npm/three@0.150.1/build/three.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.150.1/examples/js/loaders/STLLoader.js"></script>
+
+<script>
+  const scene = new THREE.Scene();
+  const camera = new THREE.PerspectiveCamera(75, 600 / 400, 0.1, 1000);
+  const renderer = new THREE.WebGLRenderer();
+  renderer.setSize(600, 400);
+  document.getElementById("viewer").appendChild(renderer.domElement);
+
+  const loader = new THREE.STLLoader();
+  loader.load('lionHeadFinal.stl', function (geometry) {
+    const material = new THREE.MeshNormalMaterial();
+    const mesh = new THREE.Mesh(geometry, material);
+    scene.add(mesh);
+    camera.position.z = 100;
+    animate();
+  });
+
+  function animate() {
+    requestAnimationFrame(animate);
+    renderer.render(scene, camera);
+  }
+</script>
+
 
 <p>Supporting Elements Foam Cushioning &pound;10</p>
 <p>Support Features&nbsp;&nbsp; Straps and Clips &pound;8</p>
